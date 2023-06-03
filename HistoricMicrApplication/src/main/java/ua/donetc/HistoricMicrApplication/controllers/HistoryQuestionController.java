@@ -1,10 +1,7 @@
 package ua.donetc.HistoricMicrApplication.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ua.donetc.HistoricMicrApplication.entity.Question;
 import ua.donetc.HistoricMicrApplication.repo.QuestionRepo;
 
@@ -30,5 +27,10 @@ public class HistoryQuestionController {
         List<Question> questions = questionRepo.findAll();
         Collections.shuffle(questions);
         return questions.stream().limit(amount).collect(Collectors.toList());
+    }
+
+    @PostMapping("/add-question")
+    public void addQuestion(@RequestBody Question question){
+        questionRepo.save(question);
     }
 }
