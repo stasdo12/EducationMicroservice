@@ -11,10 +11,12 @@ public class MathService {
     private final Random random = new Random();
 
     public Question getRandom() {
-        int max = 1000;
+        int max = 100;
         int a = random.nextInt(max);
         int b = random.nextInt(max);
        return Question.builder().question(a+" + "+b+" =?").answer(String.valueOf(a+b)).build();
 
     }
+
+
 }

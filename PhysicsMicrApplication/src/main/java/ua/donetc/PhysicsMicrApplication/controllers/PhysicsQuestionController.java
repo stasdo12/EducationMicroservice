@@ -1,12 +1,12 @@
-package ua.donetc.HistoricMicrApplication.controllers;
+package ua.donetc.PhysicsMicrApplication.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import ua.donetc.HistoricMicrApplication.entity.Question;
-import ua.donetc.HistoricMicrApplication.services.QuestionService;
+import ua.donetc.PhysicsMicrApplication.entity.Question;
+import ua.donetc.PhysicsMicrApplication.services.QuestionService;
 
 import java.util.Collections;
 import java.util.List;
@@ -14,13 +14,13 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
-public class HistoryQuestionController {
+public class PhysicsQuestionController {
 
 
     private final QuestionService questionService;
 
     @Autowired
-    public HistoryQuestionController(QuestionService questionService) {
+    public PhysicsQuestionController(QuestionService questionService) {
         this.questionService = questionService;
     }
 
