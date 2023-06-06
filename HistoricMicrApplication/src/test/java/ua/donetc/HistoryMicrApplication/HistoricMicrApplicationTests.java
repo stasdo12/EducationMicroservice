@@ -1,4 +1,4 @@
-package ua.donetc.PhysicsMicrApplication;
+package ua.donetc.HistoryMicrApplication;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

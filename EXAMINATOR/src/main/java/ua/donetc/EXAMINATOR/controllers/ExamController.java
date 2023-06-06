@@ -21,11 +21,9 @@ public class ExamController {
     private final RestTemplate restTemplate;
 
 
-    private final DiscoveryClient discoveryClient;
 
-    public ExamController(RestTemplate restTemplate, DiscoveryClient discoveryClient) {
+    public ExamController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-        this.discoveryClient = discoveryClient;
     }
 
 

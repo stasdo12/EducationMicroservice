@@ -1,4 +1,4 @@
-package ua.donetc.PhysicsMicrApplication;
+package ua.donetc.HistoryMicrApplication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

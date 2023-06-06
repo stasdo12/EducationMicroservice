@@ -1,12 +1,12 @@
-package ua.donetc.PhysicsMicrApplication.controllers;
+package ua.donetc.HistoryMicrApplication.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import ua.donetc.PhysicsMicrApplication.entity.Question;
-import ua.donetc.PhysicsMicrApplication.services.QuestionService;
+import ua.donetc.HistoryMicrApplication.entity.Question;
+import ua.donetc.HistoryMicrApplication.services.QuestionService;
 
 import java.util.Collections;
 import java.util.List;

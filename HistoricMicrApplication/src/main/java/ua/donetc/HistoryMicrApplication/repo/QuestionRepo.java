@@ -1,9 +1,9 @@
-package ua.donetc.PhysicsMicrApplication.repo;
+package ua.donetc.HistoryMicrApplication.repo;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ua.donetc.PhysicsMicrApplication.entity.Question;
+import ua.donetc.HistoryMicrApplication.entity.Question;
 
 
 @Repository

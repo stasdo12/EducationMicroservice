@@ -1,4 +1,4 @@
-package ua.donetc.PhysicsMicrApplication.entity;
+package ua.donetc.HistoryMicrApplication.entity;
 
 
 

@@ -1,12 +1,12 @@
-package ua.donetc.PhysicsMicrApplication.services;
+package ua.donetc.HistoryMicrApplication.services;
 
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import ua.donetc.PhysicsMicrApplication.entity.Question;
-import ua.donetc.PhysicsMicrApplication.repo.QuestionRepo;
+import ua.donetc.HistoryMicrApplication.entity.Question;
+import ua.donetc.HistoryMicrApplication.repo.QuestionRepo;
 
 import java.util.List;
 
