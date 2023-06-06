@@ -37,5 +37,20 @@ public class QuestionService {
         questionRepo.deleteById(id);
     }
 
+    public Question updateQuestion(Question updatingQuestion){
+        log.info("Update Question");
+        return questionRepo.save(updatingQuestion);
+    }
+
+    public Question getQuestionById(int id){
+        log.info("GetQuestionById Question");
+       return questionRepo.findById(id).orElse(null);
+    }
+
+    public List<Question> getQuestionsStart(String startLetter){
+        return questionRepo.getCodeByQuestionStartingWith(startLetter);
+
+    }
+
 
 }
