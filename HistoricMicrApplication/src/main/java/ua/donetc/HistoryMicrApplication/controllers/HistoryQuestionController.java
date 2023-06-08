@@ -27,15 +27,17 @@ public class HistoryQuestionController {
 
 
     @GetMapping("/questions")
-    public List<Question> getQuestions(@RequestParam int amount) {
+    public List<QuestionDTO> getQuestions(@RequestParam int amount) {
         List<Question> questions = questionService.getAllQuestions();
         Collections.shuffle(questions);
-        return questions.stream().limit(amount).collect(Collectors.toList());
+        return questions.stream().limit(amount)
+                .map(questionService::conventToQuestionDTO)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/question/{id}")
-    public Question getQuestionById(@PathVariable("id") int id) {
-        return questionService.getQuestionById(id);
+    public QuestionDTO getQuestionById(@PathVariable("id") int id) {
+        return questionService.conventToQuestionDTO(questionService.getQuestionById(id));
     }
 
     @GetMapping("/question-start/{title}")
@@ -66,7 +68,5 @@ public class HistoryQuestionController {
         questionService.deleteQuestion(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }
-
-
 
 }

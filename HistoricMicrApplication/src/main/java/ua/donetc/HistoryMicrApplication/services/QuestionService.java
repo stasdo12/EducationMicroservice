@@ -60,6 +60,9 @@ public class QuestionService {
     public Question conventToQuestion(QuestionDTO questionDTO){
         return modelMapper.map(questionDTO, Question.class);
     }
+    public QuestionDTO conventToQuestionDTO(Question question){
+        return modelMapper.map(question, QuestionDTO.class);
+    }
 
 
 
