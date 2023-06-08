@@ -14,6 +14,7 @@ This project demonstrates a microservice architecture for generating exams by re
 3. HistoricMicrApplication: This microservice provides history-related questions.
 
 4. MathMicrApplication: This microservice provides math-related questions.
+5. PhysicsMicrApplication: This microservice provides Physic-related questions.
 
 ## Technologies Used
 
