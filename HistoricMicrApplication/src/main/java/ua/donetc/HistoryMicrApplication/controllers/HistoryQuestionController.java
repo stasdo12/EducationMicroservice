@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import ua.donetc.HistoryMicrApplication.dto.QuestionDTO;
 import ua.donetc.HistoryMicrApplication.entity.Question;
 import ua.donetc.HistoryMicrApplication.services.QuestionService;
 
@@ -43,8 +44,8 @@ public class HistoryQuestionController {
     }
 
     @PostMapping("/add-question")
-    public Question addQuestion(@RequestBody Question question) {
-        return questionService.saveQuestion(question);
+    public Question addQuestion(@RequestBody QuestionDTO questionDTO) {
+        return questionService.saveQuestion(questionService.conventToQuestion(questionDTO));
     }
 
     @Transactional

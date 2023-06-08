@@ -2,9 +2,11 @@ package ua.donetc.HistoryMicrApplication.services;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import ua.donetc.HistoryMicrApplication.dto.QuestionDTO;
 import ua.donetc.HistoryMicrApplication.entity.Question;
 import ua.donetc.HistoryMicrApplication.repo.QuestionRepo;
 
@@ -17,9 +19,12 @@ public class QuestionService {
 
     private final QuestionRepo questionRepo;
 
+    private final ModelMapper modelMapper;
+
     @Autowired
-    public QuestionService(QuestionRepo questionRepo) {
+    public QuestionService(QuestionRepo questionRepo, ModelMapper modelMapper) {
         this.questionRepo = questionRepo;
+        this.modelMapper = modelMapper;
     }
 
     public List<Question> getAllQuestions() {
@@ -51,6 +56,11 @@ public class QuestionService {
         return questionRepo.getCodeByQuestionStartingWith(startLetter);
 
     }
+
+    public Question conventToQuestion(QuestionDTO questionDTO){
+        return modelMapper.map(questionDTO, Question.class);
+    }
+
 
 
 }
