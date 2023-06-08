@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import ua.donetc.HistoryMicrApplication.dto.QuestionDTO;
 import ua.donetc.HistoryMicrApplication.entity.Question;
+import ua.donetc.HistoryMicrApplication.exception.QuestionException;
 import ua.donetc.HistoryMicrApplication.repo.QuestionRepo;
 
 import java.util.List;
@@ -21,10 +22,13 @@ public class QuestionService {
 
     private final ModelMapper modelMapper;
 
+
+
     @Autowired
     public QuestionService(QuestionRepo questionRepo, ModelMapper modelMapper) {
         this.questionRepo = questionRepo;
         this.modelMapper = modelMapper;
+
     }
 
     public List<Question> getAllQuestions() {
@@ -49,7 +53,7 @@ public class QuestionService {
 
     public Question getQuestionById(int id){
         log.info("GetQuestionById Question");
-       return questionRepo.findById(id).orElse(null);
+       return questionRepo.findById(id).orElseThrow(QuestionException::new);
     }
 
     public List<Question> getQuestionsStart(String startLetter){

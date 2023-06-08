@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import ua.donetc.HistoryMicrApplication.dto.QuestionDTO;
 import ua.donetc.HistoryMicrApplication.entity.Question;
+import ua.donetc.HistoryMicrApplication.exception.QuestionException;
 import ua.donetc.HistoryMicrApplication.services.QuestionService;
 
 import java.util.Collections;
@@ -67,6 +68,12 @@ public class HistoryQuestionController {
     public ResponseEntity<HttpStatus> deleteQuestion(@PathVariable("id") int id) {
         questionService.deleteQuestion(id);
         return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @ExceptionHandler(QuestionException.class)
+    public ResponseEntity<String> handleQuestionException(QuestionException ex){
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("This id is incorrect EXCEPTION: " + ex);
     }
 
 }
