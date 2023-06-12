@@ -10,7 +10,7 @@ public class MathService {
 
     private final Random random = new Random();
 
-    public Question getRandom() {
+    public Question getRandomPlus() {
         int max = 100;
         int a = random.nextInt(max);
         int b = random.nextInt(max);
@@ -18,5 +18,28 @@ public class MathService {
 
     }
 
+    public Question getRandomMinus() {
+        int max = 100;
+        int a = random.nextInt(max);
+        int b = random.nextInt(max);
+        return Question.builder().question(a+ " - "+b+" =?").answer(String.valueOf(a-b)).build();
+
+    }
+
+
+    public Question getRandomDevote() {
+        int max = 100;
+        int a = random.nextInt(max);
+        int b = random.nextInt(max);
+        return Question.builder().question(a+" / "+b+" =?").answer(String.valueOf(a/b)).build();
+
+    }
+    public Question getRandomMultiply() {
+        int max = 100;
+        int a = random.nextInt(max);
+        int b = random.nextInt(max);
+        return Question.builder().question(a+" * "+b+" =?").answer(String.valueOf(a*b)).build();
+
+    }
 
 }

@@ -23,12 +23,41 @@ public class MathController {
         this.mathService = mathService;
     }
 
-    @GetMapping("/questions")
-    public List<Question> getRandomQuestions(@RequestParam int amount) {
+    @GetMapping("/questions-plus")
+    public List<Question> getRandomQuestionsPlus(@RequestParam int amount) {
         List<Question> questions = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
-            questions.add(mathService.getRandom());
+            questions.add(mathService.getRandomPlus());
         }
         return questions;
     }
+
+    @GetMapping("/questions-minus")
+    public List<Question> getRandomQuestionsMinus(@RequestParam int amount) {
+        List<Question> questions = new ArrayList<>();
+        for (int i = 0; i < amount; i++) {
+            questions.add(mathService.getRandomMinus());
+        }
+        return questions;
+    }
+
+    @GetMapping("/questions-devote")
+    public List<Question> getRandomQuestionsDevote(@RequestParam int amount) {
+        List<Question> questions = new ArrayList<>();
+        for (int i = 0; i < amount; i++) {
+            questions.add(mathService.getRandomDevote());
+        }
+        return questions;
+    }
+    @GetMapping("/questions-multiply")
+    public List<Question> getRandomQuestionsMultiply(@RequestParam int amount) {
+        List<Question> questions = new ArrayList<>();
+        for (int i = 0; i < amount; i++) {
+            questions.add(mathService.getRandomMultiply());
+        }
+        return questions;
+    }
+
+
+
 }
