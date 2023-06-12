@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import ua.donetc.PhysicsMicrApplication.entity.Question;
+import ua.donetc.PhysicsMicrApplication.exception.QuestionException;
 import ua.donetc.PhysicsMicrApplication.services.QuestionService;
 
 import java.util.Collections;
@@ -32,6 +33,8 @@ public class PhysicsQuestionController {
         return questions.stream().limit(amount).collect(Collectors.toList());
     }
 
+
+
     @PostMapping("/add-question")
     public Question addQuestion(@RequestBody Question question){
         return questionService.saveQuestion(question);
@@ -45,4 +48,31 @@ public class PhysicsQuestionController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
+    @GetMapping("/question/{id}")
+    public Question getQuestionById(@PathVariable("id") int id){
+        return questionService.getQuestionById(id);
+    }
+
+    @GetMapping("/question-start/{title}")
+    public List<Question> getQuestionStartWith(@PathVariable("title") String title){
+        return questionService.getQuestionsStart(title);
+    }
+
+    @Transactional
+    @PatchMapping("update-question/{id}")
+    public ResponseEntity<Question> updateQuestion(@PathVariable("id") int id,
+                                                   @RequestBody Question updatingQuestion) {
+        Question exQuestion = questionService.getQuestionById(id);
+        exQuestion.setQuestion(updatingQuestion.getQuestion());
+        exQuestion.setAnswer(updatingQuestion.getAnswer());
+        updatingQuestion = questionService.updateQuestion(updatingQuestion);
+        return ResponseEntity.ok(updatingQuestion);
+
+    }
+
+    @ExceptionHandler(QuestionException.class)
+    public ResponseEntity<String> handleQuestionException(QuestionException ex){
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("This id is incorrect EXCEPTION: " + ex);
+    }
 }
