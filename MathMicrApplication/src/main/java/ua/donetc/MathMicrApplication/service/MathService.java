@@ -10,6 +10,43 @@ public class MathService {
 
     private final Random random = new Random();
 
+
+    public Question getRandom(){
+        int max = 100;
+        int a = random.nextInt(max);
+        int b = random.nextInt(max);
+
+        int operation = random.nextInt(4);
+
+        String question;
+        String answer;
+
+        switch (operation) {
+            case 0 -> {
+                question = a + " + " + b + "=?";
+                answer = String.valueOf(a + b);
+            }
+            case 1 -> {
+                question = a + " - " + b + "=?";
+                answer = String.valueOf(a - b);
+            }
+            case 2 -> {
+                question = a + " / " + b + "=?";
+                answer = String.valueOf(a / b);
+            }
+            case 3 -> {
+                question = a + " * " + b + "=?";
+                answer = String.valueOf(a * b);
+            }
+            default -> {
+                question = "";
+                answer = "";
+            }
+        }
+        return Question.builder().question(question).answer(answer).build();
+
+    }
+
     public Question getRandomPlus() {
         int max = 100;
         int a = random.nextInt(max);

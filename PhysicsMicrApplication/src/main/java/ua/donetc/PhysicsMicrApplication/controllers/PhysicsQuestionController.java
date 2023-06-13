@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import ua.donetc.PhysicsMicrApplication.dto.QuestionDTO;
 import ua.donetc.PhysicsMicrApplication.entity.Question;
 import ua.donetc.PhysicsMicrApplication.exception.QuestionException;
 import ua.donetc.PhysicsMicrApplication.services.QuestionService;
@@ -27,17 +28,19 @@ public class PhysicsQuestionController {
 
 
     @GetMapping("/questions")
-    public List<Question> getQuestions(@RequestParam int amount) {
+    public List<QuestionDTO> getQuestions(@RequestParam int amount) {
         List<Question> questions = questionService.getAllQuestions();
         Collections.shuffle(questions);
-        return questions.stream().limit(amount).collect(Collectors.toList());
+        return questions.stream().limit(amount)
+                .map(questionService::convertToQuestionDTO)
+                .collect(Collectors.toList());
     }
 
 
 
     @PostMapping("/add-question")
-    public Question addQuestion(@RequestBody Question question){
-        return questionService.saveQuestion(question);
+    public Question addQuestion(@RequestBody QuestionDTO questionDTO){
+        return questionService.saveQuestion(questionService.convertToQuestion(questionDTO));
     }
 
 
@@ -49,8 +52,8 @@ public class PhysicsQuestionController {
     }
 
     @GetMapping("/question/{id}")
-    public Question getQuestionById(@PathVariable("id") int id){
-        return questionService.getQuestionById(id);
+    public QuestionDTO getQuestionById(@PathVariable("id") int id){
+        return questionService.convertToQuestionDTO(questionService.getQuestionById(id));
     }
 
     @GetMapping("/question-start/{title}")

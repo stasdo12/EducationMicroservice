@@ -61,14 +61,11 @@ public class QuestionService {
     public Question convertToQuestion(QuestionDTO questionDTO){
         log.info("convert QuestionDTO To Question");
         return modelMapper.map(questionDTO, Question.class);
-        
-        //TODO
     }
 
     public QuestionDTO convertToQuestionDTO(Question question){
         log.info("convert Question To QuestionDTO");
         return modelMapper.map(question, QuestionDTO.class);
-        //TODO
     }
 
 }
