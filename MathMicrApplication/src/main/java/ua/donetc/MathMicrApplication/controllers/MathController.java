@@ -23,7 +23,7 @@ public class MathController {
         this.mathService = mathService;
     }
 
-    @GetMapping("/question")
+    @GetMapping("/questions")
     public List<Question> getRandomQuestion(@RequestParam int amount){
         List<Question> questions = new ArrayList<>();
         for (int i=0; i<amount; i++){
