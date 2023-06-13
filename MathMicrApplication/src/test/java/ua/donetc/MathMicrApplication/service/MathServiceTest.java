@@ -18,8 +18,42 @@ class MathServiceTest {
 
     @Test
     void getRandom() {
-        //TODO
+
+        Question question = mathService.getRandom();
+        String generatedQuestion = question.getQuestion();
+        String generatedAnswer = question.getAnswer();
+
+
+        Assertions.assertNotNull(generatedQuestion);
+        Assertions.assertNotNull(generatedAnswer);
+        Assertions.assertTrue(generatedQuestion.matches("\\d+ [+\\-/*] \\d+=\\?"));
+        String questionWithoutSpaces = generatedQuestion.replace(" ", "");
+
+        int operand1EndIndex = 0;
+        while (operand1EndIndex < questionWithoutSpaces.length()
+                && Character.isDigit(questionWithoutSpaces.charAt(operand1EndIndex))) {
+            operand1EndIndex++;
+        }
+        int operand2StartIndex = operand1EndIndex + 1;
+
+
+        String operand1 = questionWithoutSpaces.substring(0, operand1EndIndex);
+        String operand2 = questionWithoutSpaces.substring(operand2StartIndex, questionWithoutSpaces.length() - 2);
+        String operator = questionWithoutSpaces.substring(operand1EndIndex, operand2StartIndex);
+
+        int a = Integer.parseInt(operand1);
+        int b = Integer.parseInt(operand2);
+        int result = switch (operator) {
+            case "+" -> a + b;
+            case "-" -> a - b;
+            case "/" -> a / b;
+            case "*" -> a * b;
+            default -> throw new IllegalArgumentException("Invalid operator");
+        };
+        Assertions.assertEquals(result, Integer.parseInt(generatedAnswer));
     }
+
+
 
 
     @Test
@@ -30,7 +64,8 @@ class MathServiceTest {
         Assertions.assertTrue(expectedQuestion.matches("\\d+ \\+ \\d+ =\\?"));
         Assertions.assertEquals(Integer.parseInt(expectedAnswer),
                 Integer.parseInt(expectedQuestion.split(" \\+ ")[0].trim()) +
-                        Integer.parseInt(expectedQuestion.split(" \\+ ")[1].replace(" =?", "").trim()));
+                        Integer.parseInt(expectedQuestion.split(" \\+ ")[1]
+                                .replace(" =?", "").trim()));
 
 }
 
@@ -45,7 +80,8 @@ class MathServiceTest {
 
         Assertions.assertEquals(Integer.parseInt(expectedAnswer),
                 Integer.parseInt(expectedQuestion.split(" - ")[0].trim()) -
-                        Integer.parseInt(expectedQuestion.split(" - ")[1].replace(" =?", "").trim()));
+                        Integer.parseInt(expectedQuestion.split(" - ")[1]
+                                .replace(" =?", "").trim()));
 
     }
 
@@ -58,7 +94,8 @@ class MathServiceTest {
 
         Assertions.assertEquals(Integer.parseInt(expectedAnswer),
                 Integer.parseInt(expectedQuestion.split(" / ")[0].trim()) /
-                        Integer.parseInt(expectedQuestion.split(" / ")[1].replace(" =?", "").trim()));
+                        Integer.parseInt(expectedQuestion.split(" / ")[1]
+                                .replace(" =?", "").trim()));
 
     }
 
@@ -70,6 +107,7 @@ class MathServiceTest {
         Assertions.assertTrue(expectedQuestion.matches("\\d+ \\* \\d+ =\\?"));
         Assertions.assertEquals(Integer.parseInt(expectedAnswer),
                 Integer.parseInt(expectedQuestion.split(" \\* ")[0].trim()) *
-                        Integer.parseInt(expectedQuestion.split(" \\* ")[1].replace(" =?", "").trim()));
+                        Integer.parseInt(expectedQuestion.split(" \\* ")[1]
+                                .replace(" =?", "").trim()));
     }
 }
